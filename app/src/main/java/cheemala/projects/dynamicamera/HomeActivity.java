@@ -41,6 +41,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void initializeViews() {
+
         inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         dynamicItmHolder = findViewById(R.id.dynamic_itm_holder);
 
@@ -70,6 +71,7 @@ public class HomeActivity extends AppCompatActivity {
                 currntImgTag = "img" + crnBtnTag.substring(7);
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(cameraIntent, CAM_REQUEST_CODE);
+
             }
         });
 
