@@ -70,12 +70,10 @@ public class HomeActivity extends AppCompatActivity {
                 currntImgTag = "img" + crnBtnTag.substring(7);
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(cameraIntent, CAM_REQUEST_CODE);
-                Toast.makeText(HomeActivity.this, "" + currntImgTag, Toast.LENGTH_SHORT).show();
             }
         });
 
         dynamicItmHolder.addView(itemView);
-        // Toast.makeText(HomeActivity.this,""+dynamicItmHolder.getChildCount(),Toast.LENGTH_SHORT).show();
 
     }
 
@@ -111,7 +109,6 @@ public class HomeActivity extends AppCompatActivity {
 
         if (requestCode == CAM_REQUEST_CODE && resultCode == RESULT_OK) {
             if (data != null) {
-                Toast.makeText(HomeActivity.this, "" + currntImgTag, Toast.LENGTH_SHORT).show();
                 ImageView dynamicImg = dynamicItmHolder.findViewWithTag(currntImgTag);
                 Bitmap bitmapImg = (Bitmap) data.getExtras().get("data");
                 dynamicImg.setImageBitmap(bitmapImg);
