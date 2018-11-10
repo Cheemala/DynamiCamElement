@@ -3,4 +3,10 @@
     <string name="cam_clk">Cam</string>
     <string name="ad_clk">Add</string>
     <string name="remov_clk">Del</string>
+    <string name="img_tag">img</string>
+    <string name="cam_btn_tag">cam_btn</string>
+    <string name="ad_btn_tag">ad_btn</string>
+    <string name="data">data</string>
+    <string name="img_cap_err">Image not captured!</string>
+
 </resources>

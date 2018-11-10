@@ -59,6 +59,7 @@ public class HomeActivity extends AppCompatActivity {
         adBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String itmTag = (String) view.getTag();
                 Button clkdBtnView = dynamicItmHolder.findViewWithTag(itmTag);
                 if (clkdBtnView.getText().toString().contentEquals(getString(R.string.ad_clk))) {
@@ -78,7 +79,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 String crnBtnTag = (String) view.getTag();
-                currntImgTag = "img" + crnBtnTag.substring(7);
+                currntImgTag = getString(R.string.img_tag) + crnBtnTag.substring(7);
                 Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(cameraIntent, CAM_REQUEST_CODE);
 
@@ -101,24 +102,24 @@ public class HomeActivity extends AppCompatActivity {
         for (int i = 0; i < dynamicItmHolder.getChildCount(); i++) {
             View itemView = dynamicItmHolder.getChildAt(i);
             ImageView imgVw = itemView.findViewById(R.id.img_vw);
-            imgVw.setTag("img" + i);
+            imgVw.setTag(getString(R.string.img_tag) + i);
             Button camBtn = itemView.findViewById(R.id.clk_btn);
-            camBtn.setTag("cam_btn" + i);
+            camBtn.setTag(getString(R.string.cam_btn_tag) + i);
             Button adBtn = itemView.findViewById(R.id.ad_btn);
-            adBtn.setTag("ad_btn" + i);
+            adBtn.setTag(getString(R.string.ad_btn_tag) + i);
         }
     }
 
     private Object getAdBtnTagIdntfer(LinearLayout dynamicItmHolder) {
-        return "ad_btn" + (dynamicItmHolder.getChildCount());
+        return getString(R.string.ad_btn_tag) + (dynamicItmHolder.getChildCount());
     }
 
     private Object getCamBtnTagIdntfer(LinearLayout dynamicItmHolder) {
-        return "cam_btn" + (dynamicItmHolder.getChildCount());
+        return getString(R.string.cam_btn_tag) + (dynamicItmHolder.getChildCount());
     }
 
     private Object getImgTagIdntfer(LinearLayout dynamicItmHolder) {
-        return "img" + (dynamicItmHolder.getChildCount());
+        return getString(R.string.img_tag) + (dynamicItmHolder.getChildCount());
     }
 
     private boolean checkPermission() {
@@ -142,11 +143,11 @@ public class HomeActivity extends AppCompatActivity {
         if (requestCode == CAM_REQUEST_CODE && resultCode == RESULT_OK) {
             if (data != null) {
                 ImageView dynamicImg = dynamicItmHolder.findViewWithTag(currntImgTag);
-                Bitmap bitmapImg = (Bitmap) data.getExtras().get("data");
+                Bitmap bitmapImg = (Bitmap) data.getExtras().get(getString(R.string.data));
                 dynamicImg.setImageBitmap(bitmapImg);
             }
         } else {
-            Toast.makeText(HomeActivity.this, "Image not captured!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(HomeActivity.this, getString(R.string.img_cap_err), Toast.LENGTH_SHORT).show();
         }
 
     }
