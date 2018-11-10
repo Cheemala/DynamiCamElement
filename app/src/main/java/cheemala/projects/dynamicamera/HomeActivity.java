@@ -59,7 +59,17 @@ public class HomeActivity extends AppCompatActivity {
         adBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                adDynamicItem();
+                String itmTag = (String) view.getTag();
+                Button clkdBtnView = dynamicItmHolder.findViewWithTag(itmTag);
+                if (clkdBtnView.getText().toString().contentEquals(getString(R.string.ad_clk))) {
+                    adDynamicItem();
+                    clkdBtnView.setText(getString(R.string.remov_clk));
+                } else if (clkdBtnView.getText().toString().contentEquals(getString(R.string.remov_clk))) {
+                    int itemPos = Integer.parseInt(itmTag.substring(6));
+                    removDynamicItem(itemPos);
+                } else {
+                }
+
             }
         });
 
@@ -79,16 +89,36 @@ public class HomeActivity extends AppCompatActivity {
 
     }
 
+    private void removDynamicItem(int itemPos) {
+        View removableItm = dynamicItmHolder.getChildAt((itemPos));
+        if (removableItm != null) {
+            dynamicItmHolder.removeView(removableItm);
+            resetItmTags();
+        }
+    }
+
+    private void resetItmTags() {
+        for (int i = 0; i < dynamicItmHolder.getChildCount(); i++) {
+            View itemView = dynamicItmHolder.getChildAt(i);
+            ImageView imgVw = itemView.findViewById(R.id.img_vw);
+            imgVw.setTag("img" + i);
+            Button camBtn = itemView.findViewById(R.id.clk_btn);
+            camBtn.setTag("cam_btn" + i);
+            Button adBtn = itemView.findViewById(R.id.ad_btn);
+            adBtn.setTag("ad_btn" + i);
+        }
+    }
+
     private Object getAdBtnTagIdntfer(LinearLayout dynamicItmHolder) {
-        return "ad_btn" + (dynamicItmHolder.getChildCount() + 1);
+        return "ad_btn" + (dynamicItmHolder.getChildCount());
     }
 
     private Object getCamBtnTagIdntfer(LinearLayout dynamicItmHolder) {
-        return "cam_btn" + (dynamicItmHolder.getChildCount() + 1);
+        return "cam_btn" + (dynamicItmHolder.getChildCount());
     }
 
     private Object getImgTagIdntfer(LinearLayout dynamicItmHolder) {
-        return "img" + (dynamicItmHolder.getChildCount() + 1);
+        return "img" + (dynamicItmHolder.getChildCount());
     }
 
     private boolean checkPermission() {

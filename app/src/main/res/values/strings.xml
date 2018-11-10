@@ -2,4 +2,5 @@
     <string name="app_name">DynamiCamera</string>
     <string name="cam_clk">Cam</string>
     <string name="ad_clk">Add</string>
+    <string name="remov_clk">Del</string>
 </resources>
